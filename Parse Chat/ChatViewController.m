@@ -20,6 +20,7 @@
 @implementation ChatViewController
 - (IBAction)sendMessage:(id)sender {
     PFObject *chatMessage = [PFObject objectWithClassName:@"Message_FBU2021"];
+    chatMessage[@"user"] = PFUser.currentUser;
     chatMessage[@"text"] = self.chatField.text;
     [chatMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (succeeded) {
@@ -36,13 +37,14 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(refreshData) userInfo:nil repeats:true];
+    [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(refreshData) userInfo:nil repeats:true];
 }
 
 - (void) refreshData{
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Message_FBU2021"];
     query.limit = 20;
+    [query includeKey:@"user"];
     [query orderByDescending:@"createdAt"];
 
     // fetch data asynchronously
@@ -73,7 +75,17 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
     ChatCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChatCell" forIndexPath:indexPath];
-    cell.message.text = self.arrayOfMessages[indexPath.row][@"text"];
+    PFObject *message = self.arrayOfMessages[indexPath.row];
+    cell.message.text = message[@"text"] ;
+    
+    PFUser *user = message[@"user"];
+    if (user != nil) {
+        // User found! update username label with username
+        cell.username.text = user.username;
+    } else {
+        // No user found, set default username
+        cell.username.text = @"🤖";
+    }
     return cell;
 }
 

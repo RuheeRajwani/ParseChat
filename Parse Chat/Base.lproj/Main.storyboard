@@ -93,28 +93,53 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatCell" id="HeA-k6-f6g" customClass="ChatCell">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="37"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HeA-k6-f6g" id="6fm-ac-OEA">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="37"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pGW-dv-54I">
-                                                    <rect key="frame" x="8" y="8" width="398" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="message" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pGW-dv-54I">
+                                                    <rect key="frame" x="10" y="30" width="394" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3l-8n-Cug">
+                                                    <rect key="frame" x="10" y="5" width="394" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="Pn3-82-jd2"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="pGW-dv-54I" secondAttribute="bottom" constant="5" id="0Cb-IH-zhT"/>
+                                                <constraint firstAttribute="trailing" secondItem="pGW-dv-54I" secondAttribute="trailing" constant="10" id="8Gn-KL-52T"/>
                                                 <constraint firstAttribute="trailing" secondItem="pGW-dv-54I" secondAttribute="trailing" constant="8" id="OEc-3X-i20"/>
+                                                <constraint firstAttribute="trailing" secondItem="S3l-8n-Cug" secondAttribute="trailing" constant="10" id="SOD-Nh-Of5"/>
+                                                <constraint firstItem="pGW-dv-54I" firstAttribute="top" secondItem="S3l-8n-Cug" secondAttribute="bottom" constant="5" id="Zow-D9-QY0"/>
+                                                <constraint firstItem="S3l-8n-Cug" firstAttribute="top" secondItem="6fm-ac-OEA" secondAttribute="top" constant="5" id="df7-9d-PGC"/>
                                                 <constraint firstAttribute="bottom" secondItem="pGW-dv-54I" secondAttribute="bottom" constant="8" id="ksw-lk-vZo"/>
                                                 <constraint firstItem="pGW-dv-54I" firstAttribute="top" secondItem="6fm-ac-OEA" secondAttribute="top" constant="8" id="laZ-2m-7TZ"/>
                                                 <constraint firstItem="pGW-dv-54I" firstAttribute="leading" secondItem="6fm-ac-OEA" secondAttribute="leading" constant="8" id="nPO-lC-1V2"/>
+                                                <constraint firstItem="pGW-dv-54I" firstAttribute="leading" secondItem="6fm-ac-OEA" secondAttribute="leading" constant="10" id="oML-Sm-jq1"/>
+                                                <constraint firstItem="S3l-8n-Cug" firstAttribute="leading" secondItem="6fm-ac-OEA" secondAttribute="leading" constant="10" id="syU-ha-urQ"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="OEc-3X-i20"/>
+                                                    <exclude reference="ksw-lk-vZo"/>
+                                                    <exclude reference="laZ-2m-7TZ"/>
+                                                    <exclude reference="nPO-lC-1V2"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="message" destination="pGW-dv-54I" id="GGP-Ld-QxX"/>
+                                            <outlet property="username" destination="S3l-8n-Cug" id="cA9-4B-28S"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
